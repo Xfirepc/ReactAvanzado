@@ -1,12 +1,12 @@
 import React from 'react'
 import { ListOfCategories } from './Components/ListOfCategories'
 import { GlobalStyle } from './GlogbalStyles'
-import { PhotoCard } from './Components/PhotoCard'
+import { ListOfPhotoCards } from './Components/ListOfPhotoCards'
 
 export const App = () => (
   <>
     <GlobalStyle />
     <ListOfCategories />
-    <PhotoCard />
+    <ListOfPhotoCards />
   </>
 )
