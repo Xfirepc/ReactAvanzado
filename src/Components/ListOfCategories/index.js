@@ -1,25 +1,50 @@
-import React, { useState, useEffect } from 'react'
+import React, { Fragment, useState, useEffect } from 'react'
 import { Category } from '../Category'
 import { List, Item } from './style'
+import { Spinner } from '../Spinner';
 
-export const ListOfCategories = () => {
+function useCategoriesData() {
   const [categories, setCategories] = useState([])
+  const [loading, setLoading] = useState(false)
   useEffect(function () {
+    setLoading(true)
     window.fetch('https://petgram-server-xfire.vinygfx.now.sh/categories')
       .then(res => res.json())
       .then(response => {
         setCategories(response)
+        setLoading(false)
       })
   }, [])
 
-  const renderList = () => {
-    <List>
+  return { categories, loading }
+}
+
+export const ListOfCategories = () => {
+  const { categories, loading } = useCategoriesData()
+  const [showFixed, setShowFixed] = useState(false)
+
+  useEffect(function () {
+    const onScroll = e => {
+      const newShowFixed = window.scrollY > 200
+      showFixed !== newShowFixed && setShowFixed(newShowFixed)
+    }
+
+    document.addEventListener('scroll', onScroll)
+  })
+  const renderList = (fixed) => (
+    <List fixed={fixed}>
       {
-        categories.map(category => <Item key={category.id}><Category {...category} /></Item>)
+        loading
+          ? <Spinner />
+          : categories.map(category => <Item key={category.id}><Category {...category} /></Item>)
       }
     </List>
-  }
+  )
+
   return (
-    renderList()
+    <Fragment>
+      {renderList()}
+      {showFixed && renderList(true)}
+    </Fragment>
   )
 }
