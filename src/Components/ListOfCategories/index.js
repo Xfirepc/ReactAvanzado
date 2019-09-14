@@ -1,9 +1,9 @@
 import React, { Fragment, useState, useEffect } from 'react'
 import { Category } from '../Category'
 import { List, Item } from './style'
-import { Spinner } from '../Spinner';
+import { Spinner } from '../Spinner'
 
-function useCategoriesData() {
+function useCategoriesData () {
   const [categories, setCategories] = useState([])
   const [loading, setLoading] = useState(false)
   useEffect(function () {
