@@ -10,27 +10,8 @@ export const PhotoCard = ({ id, likes = 0, src = DEFAULT_IMAGE }) => {
   const [show, setShow] = useState(false)
   const key = `like-${id}`
   const [liked, setLiked] = useLocalStorage(key, false)
-
-  useEffect(function () {
-    Promise.resolve(
-      typeof window.IntersectionObserver !== 'undefined'
-        ? window.IntersectionObserver
-        : import('intersection-observer')
-    ).then(() => {
-      const observer = new window.IntersectionObserver(function (entries) {
-        const { isIntersecting } = entries[0]
-        console.log(isIntersecting)
-        if (isIntersecting) {
-          setShow(true)
-          observer.disconnect()
-        }
-      })
-      observer.observe(element.current)
-    })
-  }, [element])
-
   const Icon = liked ? MdFavorite : MdFavoriteBorder
-  
+
   return (
     <Article ref={element}>
       {
