@@ -6,6 +6,24 @@ const DEFAULT_IMAGE = 'https://res.cloudinary.com/midudev/image/upload/w_300/q_8
 export const PhotoCard = ({ id, likes = 0, src = DEFAULT_IMAGE }) => {
   const element = useRef(null)
   const [show, setShow] = useState(false)
+  const key = `like-${id}`
+  const [liked, setLiked] = useState(() => {
+    try {
+      const like = window.localStorage.getItem(key)
+      return JSON.parse(like)
+    } catch (e) {
+      return false
+    }
+  })
+  const Icon = liked ? MdFavorite : MdFavoriteBorder
+  const setLocalStorage = (value) => {
+    try {
+      window.localStorage.setItem(key, value)
+      setLiked(value)
+    } catch (e) {
+      console.error(e)
+    }
+  }
 
   useEffect(function () {
     Promise.resolve(
@@ -34,7 +52,9 @@ export const PhotoCard = ({ id, likes = 0, src = DEFAULT_IMAGE }) => {
               <Img src={src} />
             </ImgWrapper>
           </a>
-          <Button><MdFavoriteBorder size='32px' /> { likes } likes!</Button>
+          <Button onClick={() => setLocalStorage(!liked)}>
+            <Icon size='32px' /> { likes } likes!
+          </Button>
         </Fragment>
       }
     </Article>
