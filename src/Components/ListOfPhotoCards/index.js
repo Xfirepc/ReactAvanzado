@@ -1,8 +1,7 @@
 import React from 'react'
 import { PhotoCard } from '../PhotoCard'
-import { withPhotos } from '../../hoc/withPhotos'
 
-const ListOfPhotoCardsComponent = ({ data: { photos = [] } }) => {
+export const ListOfPhotoCardsComponent = ({ data: { photos = [] } }) => {
   // console.log(props)
   return (
     <ul>
@@ -10,5 +9,3 @@ const ListOfPhotoCardsComponent = ({ data: { photos = [] } }) => {
     </ul>
   )
 }
-
-export const ListOfPhotoCards = withPhotos(ListOfPhotoCardsComponent)
