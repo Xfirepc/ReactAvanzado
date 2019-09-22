@@ -1,7 +1,7 @@
 import React from 'react'
 import { Nav, Link } from './styles'
 import { MdHome, MdFavoriteBorder, MdPersonOutline } from 'react-icons/md'
-const SIZE = '32px'
+const SIZE = '30px'
 export const NavBar = () => {
   return (
     <Nav>
