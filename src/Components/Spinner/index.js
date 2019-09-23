@@ -23,3 +23,17 @@ export const Spinner = styled.div`
   width:40px;
   z-index: 10;
 `
+
+export const MiniSpinner = styled.div`
+  ${rotate()}
+  float: right;
+  border:2px solid #fff;
+  border-right: 2px solid transparent;
+  border-radius: 50%;
+  height: 20px;
+  width:20px;
+  z-index: 10;
+  position: absolute;
+  right: 10px;
+  margin-top: -15px;
+`
