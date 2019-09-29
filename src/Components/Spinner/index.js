@@ -33,7 +33,7 @@ export const MiniSpinner = styled.div`
   height: 20px;
   width:20px;
   z-index: 10;
-  position: absolute;
+  /* position: absolute; */
   right: 10px;
-  margin-top: -15px;
+  /* margin-top: -15px; */
 `
