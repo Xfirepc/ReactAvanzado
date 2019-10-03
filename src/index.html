@@ -10,5 +10,21 @@
     <div id="app">
 
     </div>
+    <noscript>
+        <h3>This app needs Javascript permissions!</h3>
+    </noscript>
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', function () {
+                navigator.serviceWorker.register('/service-worker.js')
+                    .then(registration => {
+                        console.log('SW registrado!')
+                    })
+                    .catch(e => {
+                        console.log('SW Error', e)
+                    })
+            })
+        }
+    </script>
 </body>
 </html>
