@@ -15,7 +15,6 @@ const Favs = React.lazy(() => import('./Pages/Favs'))
 
 export const App = () => {
   const { isAuth } = useContext(Context)
-  console.log(isAuth)
   return (
     <Suspense fallback={<h1>Cargando..</h1>}>
       <GlobalStyle />

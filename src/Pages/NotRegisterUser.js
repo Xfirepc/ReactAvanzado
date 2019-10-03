@@ -14,7 +14,6 @@ export const NotRegisterUser = () => {
             const input = { email, password }
             const variables = { input }
             register({ variables }).then(({ data }) => {
-              console.log(data)
               const { signup } = data
               activateAuth(signup)
             })
